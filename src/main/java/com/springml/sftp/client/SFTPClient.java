@@ -19,6 +19,8 @@ public class SFTPClient {
     private static final String STR_STRICT_HOST_KEY_CHECKING = "StrictHostKeyChecking";
     private static final String STR_SFTP = "sftp";
     private static final String STR_NO = "no";
+    private static final String STR_PREDERRED_AUTH = "PreferredAuthentications";
+    private static final String STR_PUB_KEYBORD_INTERACTIVE_PASS = "publickey,keyboard-interactive,password"
 
     private String identity;
     private String username;
@@ -269,6 +271,7 @@ public class SFTPClient {
 
         Session session = jsch.getSession(username, host, port);
         session.setConfig(STR_STRICT_HOST_KEY_CHECKING, STR_NO);
+        session.setConfig(STR_PREDERRED_AUTH, STR_PUB_KEYBORD_INTERACTIVE_PASS);
         if (!useIdentity) {
             session.setPassword(password);
         }
